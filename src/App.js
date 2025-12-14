@@ -4,23 +4,23 @@ import pic1 from "./img/pic1.gif";
 
 function App() {
     const [items, setItems] = useState([
-        { id: 1, name: "George Best", position: "Forward" },
-        { id: 2, name: "Andrei Kancheslkis", position: "Winger" },
-        { id: 3, name: "Bobby Charlton", position: "Forward" },
-        { id: 4, name: "Mark Hughess", position: "Forward" },
-        { id: 5, name: "Bryan Robson", position: "Midfielder" },
-        { id: 6, name: "Gary Pallister", position: "Defender" },
-        { id: 7, name: "Dennis Law", position: "Forward" },
-        { id: 8, name: "Ole Solskjaer", position: "Forward" },
-        { id: 9, name: "Tommy Taylor", position: "Forward" },
-        { id: 10, name: "David Beckham", position: "Midfielder" },
-        { id: 11, name: "Dwight Yorke", position: "Forward" },
-        { id: 11, name: "Andy Cole", position: "Striker" }
+        { id: 1, name: "George Best", position: "Forward", country:'Ireland' },
+        { id: 2, name: "Andrei Kancheslkis", position: "Winger", country:'Soviet Union' },
+        { id: 3, name: "Bobby Charlton", position: "Forward" , country:'England'},
+        { id: 4, name: "Mark Hughess", position: "Forward" , country:'England'},
+        { id: 5, name: "Bryan Robson", position: "Midfielder" , country:'England'},
+        { id: 6, name: "Gary Pallister", position: "Defender" , country:'England'},
+        { id: 7, name: "Dennis Law", position: "Forward" , country:'Scotland'},
+        { id: 8, name: "Ole Solskjaer", position: "Forward" , country:'Norway'},
+        { id: 9, name: "Tommy Taylor", position: "Forward" , country:'England'},
+        { id: 10, name: "David Beckham", position: "Midfielder" , country:'England'},
+        { id: 11, name: "Dwight Yorke", position: "Forward", country:'Trinidad Tobago' },
+        { id: 11, name: "Andy Cole", position: "Striker", country:'England' }
     ]);
 
-    const [newItem, setNewItem] = useState({ name: "", position: "" });
+    const [newItem, setNewItem] = useState({ name: "", position: "", country: "" });
     const [editingId, setEditingId] = useState(null);
-    const [editingItem, setEditingItem] = useState({ name: "", position: "" });
+    const [editingItem, setEditingItem] = useState({ name: "", position: "", country: "" });
 
     // CREATE
     const handleAdd = (e) => {
@@ -31,10 +31,11 @@ function App() {
             id: Date.now(),
             name: newItem.name.trim(),
             position: newItem.position.trim(),
+            country: newItem.country.trim()
         };
 
         setItems((prev) => [...prev, item]);
-        setNewItem({ name: "", position: "" });
+        setNewItem({ name: "", position: "" , country : ""});
     };
 
     // DELETE
@@ -45,7 +46,7 @@ function App() {
     // START EDIT
     const handleEditStart = (item) => {
         setEditingId(item.id);
-        setEditingItem({ name: item.name, position: item.position });
+        setEditingItem({ name: item.name, position: item.position, country: item.country });
     };
 
     // SAVE EDIT
@@ -56,13 +57,13 @@ function App() {
             )
         );
         setEditingId(null);
-        setEditingItem({ name: "", position: "" });
+        setEditingItem({ name: "", position: "", country : "" });
     };
 
     // CANCEL EDIT
     const handleEditCancel = () => {
         setEditingId(null);
-        setEditingItem({ name: "", position: "" });
+        setEditingItem({ name: "", position: "", country : "" });
     };
 
     return (
@@ -90,6 +91,18 @@ function App() {
                         value={newItem.position}
                         onChange={(e) =>
                             setNewItem({ ...newItem, position: e.target.value })
+                        }
+                    />
+                </div>
+
+                <div className="field-row">
+                    <label className="field-label">Country</label>
+                    <input
+                        type="text"
+                        className="field-input"
+                        value={newItem.country}
+                        onChange={(e) =>
+                            setNewItem({ ...newItem, country: e.target.value })
                         }
                     />
                 </div>
@@ -132,6 +145,21 @@ function App() {
                                     />
                                 </div>
 
+                                <div className="field-row">
+                                    <label className="field-label">Country</label>
+                                    <input
+                                        type="text"
+                                        className="field-input"
+                                        value={editingItem.country}
+                                        onChange={(e) =>
+                                            setEditingItem({
+                                                ...editingItem,
+                                                country: e.target.value,
+                                            })
+                                        }
+                                    />
+                                </div>
+
                                 <div className="item-actions">
                                     <button onClick={() => handleEditSave(item.id)}>Save</button>
                                     <button type="button" onClick={handleEditCancel}>
@@ -149,6 +177,11 @@ function App() {
                                 <div className="item-line">
                                     <span className="line-label">Position:</span>
                                     <span className="line-value">{item.position}</span>
+                                </div>
+
+                                <div className="item-line">
+                                    <span className="line-label">Country:</span>
+                                    <span className="line-value">{item.country}</span>
                                 </div>
 
                                 <div className="item-actions">
