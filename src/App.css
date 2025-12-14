@@ -1,38 +1,145 @@
-.App {
-  text-align: center;
+.app {
+    max-width: 600px;
+    margin: 40px auto;
+    font-family: sans-serif;
+    padding: 16px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    background: #fafafa;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h2 {
+    margin-bottom: 16px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+/* FORM */
+.form {
+    margin-bottom: 24px;
+    padding: 12px 16px;
+    background: #fff;
+    border-radius: 6px;
+    border: 1px solid #e0e0e0;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.field-row {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
 }
 
-.App-link {
-  color: #61dafb;
+.field-label {
+    width: 120px;
+    font-weight: 600;
+    color: #444;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.field-input {
+    flex: 1;
+    padding: 6px 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 0.9rem;
+}
+
+.field-input:focus {
+    outline: none;
+    border-color: #1976d2;
+    box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.1);
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 8px;
+}
+
+/* BUTTONS */
+button {
+    padding: 6px 12px;
+    font-size: 0.9rem;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+    background: #FBE122;
+    color: black;
+}
+
+button + button {
+    margin-left: 8px;
+}
+
+button[type="delete"] {
+    background: #777;
+}
+
+button:hover {
+    opacity: 0.9;
+}
+
+/* LIST */
+.item-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.item {
+    margin-bottom: 12px;
+}
+
+.item-view,
+.item-edit {
+    padding: 12px 16px;
+    background: #fff;
+    border-radius: 6px;
+    border: 1px solid #e0e0e0;
+}
+
+/* DISPLAY MODE */
+.item-line {
+    display: flex;
+    margin-bottom: 6px;
+}
+
+.line-label {
+    width: 120px;
+    font-weight: 600;
+    color: #444;
+}
+
+.line-value {
+    flex: 1;
+}
+
+/* ACTIONS */
+.item-actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 8px;
+}
+
+/*me*/
+.app{
+    background: #DA291C;
+}
+
+.form{
+    background: #FBE122;
+}
+
+div.item-view{
+    background: black;
+    color: #FBE122;
+}
+
+span.line-label{
+    color:white
+}
+
+button[type="button"] {
+    background: #DA291C;
+}
+
+button[type="submit"]{
+    background: black;
+    color:#FBE122;
 }
