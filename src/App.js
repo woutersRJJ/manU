@@ -4,20 +4,23 @@ import pic1 from "./img/pic1.gif";
 
 function App() {
     const [items, setItems] = useState([
-        { id: 1, name: "George Best", description: "Forward" },
-        { id: 2, name: "Andrei Kancheslkis", description: "Winger" },
-        { id: 3, name: "Bobby Charlton", description: "Forward" },
-        { id: 4, name: "Mark Hughess", description: "Forward" },
-        { id: 5, name: "Bryan Robson", description: "Midfielder" },
-        { id: 6, name: "Gary Pallister", description: "Defender" },
-        { id: 7, name: "Dennis Law", description: "Forward" },
-        { id: 8, name: "Ole Solskjaer", description: "Forward" },
-        { id: 9, name: "Tommy Taylor", description: "Forward" }
+        { id: 1, name: "George Best", position: "Forward" },
+        { id: 2, name: "Andrei Kancheslkis", position: "Winger" },
+        { id: 3, name: "Bobby Charlton", position: "Forward" },
+        { id: 4, name: "Mark Hughess", position: "Forward" },
+        { id: 5, name: "Bryan Robson", position: "Midfielder" },
+        { id: 6, name: "Gary Pallister", position: "Defender" },
+        { id: 7, name: "Dennis Law", position: "Forward" },
+        { id: 8, name: "Ole Solskjaer", position: "Forward" },
+        { id: 9, name: "Tommy Taylor", position: "Forward" },
+        { id: 10, name: "David Beckham", position: "Midfielder" },
+        { id: 11, name: "Dwight Yorke", position: "Forward" },
+        { id: 11, name: "Andy Cole", position: "Striker" }
     ]);
 
-    const [newItem, setNewItem] = useState({ name: "", description: "" });
+    const [newItem, setNewItem] = useState({ name: "", position: "" });
     const [editingId, setEditingId] = useState(null);
-    const [editingItem, setEditingItem] = useState({ name: "", description: "" });
+    const [editingItem, setEditingItem] = useState({ name: "", position: "" });
 
     // CREATE
     const handleAdd = (e) => {
@@ -27,11 +30,11 @@ function App() {
         const item = {
             id: Date.now(),
             name: newItem.name.trim(),
-            description: newItem.description.trim(),
+            position: newItem.position.trim(),
         };
 
         setItems((prev) => [...prev, item]);
-        setNewItem({ name: "", description: "" });
+        setNewItem({ name: "", position: "" });
     };
 
     // DELETE
@@ -42,7 +45,7 @@ function App() {
     // START EDIT
     const handleEditStart = (item) => {
         setEditingId(item.id);
-        setEditingItem({ name: item.name, description: item.description });
+        setEditingItem({ name: item.name, position: item.position });
     };
 
     // SAVE EDIT
@@ -53,21 +56,19 @@ function App() {
             )
         );
         setEditingId(null);
-        setEditingItem({ name: "", description: "" });
+        setEditingItem({ name: "", position: "" });
     };
 
     // CANCEL EDIT
     const handleEditCancel = () => {
         setEditingId(null);
-        setEditingItem({ name: "", description: "" });
+        setEditingItem({ name: "", position: "" });
     };
 
     return (
         <div className="app">
-
-            {/*<img src={pic1} alt="App logo" height={"202px"} width={"196px"} />*/}
-            <img src={pic1} alt="logo" height={160} width={160} />
-            <h2>Legends</h2>
+            <img src={pic1} alt="logo" height={210} width={210} />
+            <h1>Legends</h1>
 
             {/* CREATE FORM */}
             <form onSubmit={handleAdd} className="form">
@@ -82,13 +83,13 @@ function App() {
                 </div>
 
                 <div className="field-row">
-                    <label className="field-label">Description</label>
+                    <label className="field-label">Position</label>
                     <input
                         type="text"
                         className="field-input"
-                        value={newItem.description}
+                        value={newItem.position}
                         onChange={(e) =>
-                            setNewItem({ ...newItem, description: e.target.value })
+                            setNewItem({ ...newItem, position: e.target.value })
                         }
                     />
                 </div>
@@ -117,15 +118,15 @@ function App() {
                                 </div>
 
                                 <div className="field-row">
-                                    <label className="field-label">Description</label>
+                                    <label className="field-label">Position</label>
                                     <input
                                         type="text"
                                         className="field-input"
-                                        value={editingItem.description}
+                                        value={editingItem.position}
                                         onChange={(e) =>
                                             setEditingItem({
                                                 ...editingItem,
-                                                description: e.target.value,
+                                                position: e.target.value,
                                             })
                                         }
                                     />
@@ -146,8 +147,8 @@ function App() {
                                 </div>
 
                                 <div className="item-line">
-                                    <span className="line-label">Description:</span>
-                                    <span className="line-value">{item.description}</span>
+                                    <span className="line-label">Position:</span>
+                                    <span className="line-value">{item.position}</span>
                                 </div>
 
                                 <div className="item-actions">
